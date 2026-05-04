@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram_posts/core/services/firebase/firebase_options.dart';
 import 'package:instagram_posts/core/themes/dark_theme.dart';
 import 'package:instagram_posts/core/themes/light_theme.dart';
+import 'package:instagram_posts/features/authentication/presentation/pages/auth_screen.dart';
 
 void main() async {
   // Firebase configuration
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       darkTheme: DarkTheme.darkThemeConfig,
       theme: LightTheme.lightThemeConfig,
       themeMode: ThemeMode.system,
-      home: const MyHomePage(),
+      home: const AuthScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

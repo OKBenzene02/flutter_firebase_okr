@@ -1,0 +1,112 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_posts/core/utils/app_images.dart';
+import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
+import 'package:instagram_posts/features/authentication/presentation/widgets/custom_text_field.dart';
+
+class AuthScreen extends StatefulWidget {
+  const AuthScreen({super.key});
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  String _email = '';
+  String _password = '';
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.onSurface,
+      body: BlocConsumer<AuthBlocBloc, AuthBlocState>(
+        listener: (context, state) {
+          // TODO: implement listener
+        },
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                AppImages.instagram(context).image(width: 64, fit: .contain),
+                const SizedBox(height: 20),
+                _buildFormWidget(),
+                const SizedBox(height: 20),
+                _buildShowRegisterUserText(),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildFormWidget() {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          _buildEmailTextField(),
+          const SizedBox(height: 16),
+          _buildPasswordTextField(),
+          const SizedBox(height: 24),
+          _buildSubmitButton(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEmailTextField() {
+    return CustomTextField(
+      type: AppTextFieldType.email,
+      onValue: (v) => _email = v,
+    );
+  }
+
+  Widget _buildPasswordTextField() {
+    return CustomTextField(
+      type: AppTextFieldType.password,
+      onValue: (v) => _password = v,
+      textInputAction: TextInputAction.done,
+    );
+  }
+
+  Widget _buildSubmitButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        if (_formKey.currentState!.validate()) {
+          context.read<AuthBlocBloc>().add(
+            AuthSignInEvent(email: _email, password: _password),
+          );
+        }
+      },
+      child: const Text('Sign In'),
+    );
+  }
+
+  Widget _buildShowRegisterUserText() {
+    return RichText(
+      text: TextSpan(
+        style: Theme.of(context).textTheme.bodyMedium,
+        children: [
+          const TextSpan(text: "Don't have an account? "),
+          WidgetSpan(
+            child: GestureDetector(
+              onTap: () {
+                // TODO: toggle to register mode
+              },
+              child: Text(
+                "Register",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
