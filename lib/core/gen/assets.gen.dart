@@ -28,12 +28,12 @@ class $AssetsLightGen {
 class $AssetsDarkImageGen {
   const $AssetsDarkImageGen();
 
-  /// File path: assets/dark/image/instagram_dark.png
-  AssetGenImage get instagramDark =>
-      const AssetGenImage('assets/dark/image/instagram_dark.png');
+  /// File path: assets/dark/image/instagram_light.png
+  AssetGenImage get instagramLight =>
+      const AssetGenImage('assets/dark/image/instagram_light.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [instagramDark];
+  List<AssetGenImage> get values => [instagramLight];
 }
 
 class $AssetsLightImageGen {

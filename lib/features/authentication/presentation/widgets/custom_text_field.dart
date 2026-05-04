@@ -18,47 +18,47 @@ enum AppTextFieldType {
 
 extension AppTextFieldTypeX on AppTextFieldType {
   String get label => switch (this) {
-    AppTextFieldType.email       => 'Email',
-    AppTextFieldType.password    => 'Password',
-    AppTextFieldType.username    => 'Username',
+    AppTextFieldType.email => 'Email',
+    AppTextFieldType.password => 'Password',
+    AppTextFieldType.username => 'Username',
     AppTextFieldType.displayName => 'Display Name',
-    AppTextFieldType.bio         => 'Bio',
-    AppTextFieldType.phone       => 'Phone Number',
-    AppTextFieldType.search      => 'Search',
-    AppTextFieldType.general     => 'Text',
+    AppTextFieldType.bio => 'Bio',
+    AppTextFieldType.phone => 'Phone Number',
+    AppTextFieldType.search => 'Search',
+    AppTextFieldType.general => 'Text',
   };
 
   String get hint => switch (this) {
-    AppTextFieldType.email       => 'you@example.com',
-    AppTextFieldType.password    => 'Enter your password',
-    AppTextFieldType.username    => '@username',
+    AppTextFieldType.email => 'you@example.com',
+    AppTextFieldType.password => 'Enter your password',
+    AppTextFieldType.username => '@username',
     AppTextFieldType.displayName => 'Your full name',
-    AppTextFieldType.bio         => 'Tell us about yourself...',
-    AppTextFieldType.phone       => '+1 (555) 000-0000',
-    AppTextFieldType.search      => 'Search...',
-    AppTextFieldType.general     => 'Enter text',
+    AppTextFieldType.bio => 'Tell us about yourself...',
+    AppTextFieldType.phone => '+1 (555) 000-0000',
+    AppTextFieldType.search => 'Search...',
+    AppTextFieldType.general => 'Enter text',
   };
 
   IconData get prefixIcon => switch (this) {
-    AppTextFieldType.email       => Icons.mail_outline_rounded,
-    AppTextFieldType.password    => Icons.lock_outline_rounded,
-    AppTextFieldType.username    => Icons.alternate_email_rounded,
+    AppTextFieldType.email => Icons.mail_outline_rounded,
+    AppTextFieldType.password => Icons.lock_outline_rounded,
+    AppTextFieldType.username => Icons.alternate_email_rounded,
     AppTextFieldType.displayName => Icons.badge_outlined,
-    AppTextFieldType.bio         => Icons.edit_note_rounded,
-    AppTextFieldType.phone       => Icons.phone_outlined,
-    AppTextFieldType.search      => Icons.search_rounded,
-    AppTextFieldType.general     => Icons.text_fields_rounded,
+    AppTextFieldType.bio => Icons.edit_note_rounded,
+    AppTextFieldType.phone => Icons.phone_outlined,
+    AppTextFieldType.search => Icons.search_rounded,
+    AppTextFieldType.general => Icons.text_fields_rounded,
   };
 
   bool get obscureText => this == AppTextFieldType.password;
   bool get isMultiline => this == AppTextFieldType.bio;
 
   TextInputType get keyboardType => switch (this) {
-    AppTextFieldType.email    => TextInputType.emailAddress,
-    AppTextFieldType.phone    => TextInputType.phone,
-    AppTextFieldType.bio      => TextInputType.multiline,
+    AppTextFieldType.email => TextInputType.emailAddress,
+    AppTextFieldType.phone => TextInputType.phone,
+    AppTextFieldType.bio => TextInputType.multiline,
     AppTextFieldType.password => TextInputType.visiblePassword,
-    _                         => TextInputType.text,
+    _ => TextInputType.text,
   };
 
   List<TextInputFormatter> get inputFormatters => switch (this) {
@@ -71,7 +71,7 @@ extension AppTextFieldTypeX on AppTextFieldType {
       LengthLimitingTextInputFormatter(30),
     ],
     AppTextFieldType.displayName => [LengthLimitingTextInputFormatter(50)],
-    AppTextFieldType.bio         => [LengthLimitingTextInputFormatter(150)],
+    AppTextFieldType.bio => [LengthLimitingTextInputFormatter(150)],
     _ => [],
   };
 
@@ -81,10 +81,10 @@ extension AppTextFieldTypeX on AppTextFieldType {
       return '$label is required';
     }
     return switch (this) {
-      AppTextFieldType.email       => _validateEmail(v),
-      AppTextFieldType.password    => _validatePassword(v),
-      AppTextFieldType.username    => _validateUsername(v),
-      AppTextFieldType.phone       => _validatePhone(v),
+      AppTextFieldType.email => _validateEmail(v),
+      AppTextFieldType.password => _validatePassword(v),
+      AppTextFieldType.username => _validateUsername(v),
+      AppTextFieldType.phone => _validatePhone(v),
       AppTextFieldType.displayName => _validateDisplayName(v),
       _ => null,
     };
@@ -98,21 +98,25 @@ extension AppTextFieldTypeX on AppTextFieldType {
 
   String? _validatePassword(String v) {
     if (v.length < 8) return 'Password must be at least 8 characters';
-    if (!RegExp(r'[A-Z]').hasMatch(v)) return 'Include at least one uppercase letter';
+    if (!RegExp(r'[A-Z]').hasMatch(v))
+      return 'Include at least one uppercase letter';
     if (!RegExp(r'[0-9]').hasMatch(v)) return 'Include at least one number';
     return null;
   }
 
   String? _validateUsername(String v) {
     if (v.length < 3) return 'Username must be at least 3 characters';
-    if (v.startsWith('.') || v.startsWith('_')) return 'Username cannot start with . or _';
-    if (!RegExp(r'^[a-zA-Z0-9_\.]+$').hasMatch(v)) return 'Only letters, numbers, _ and . allowed';
+    if (v.startsWith('.') || v.startsWith('_'))
+      return 'Username cannot start with . or _';
+    if (!RegExp(r'^[a-zA-Z0-9_\.]+$').hasMatch(v))
+      return 'Only letters, numbers, _ and . allowed';
     return null;
   }
 
   String? _validatePhone(String v) {
     final digitsOnly = v.replaceAll(RegExp(r'\D'), '');
-    if (digitsOnly.length < 7 || digitsOnly.length > 15) return 'Enter a valid phone number';
+    if (digitsOnly.length < 7 || digitsOnly.length > 15)
+      return 'Enter a valid phone number';
     return null;
   }
 
@@ -130,7 +134,7 @@ class CustomTextField extends StatefulWidget {
     required this.type,
     this.onChanged,
     this.onSubmitted,
-    this.onValue,         // exposes current text value upward without a controller
+    this.onValue, // exposes current text value upward without a controller
     this.enabled = true,
     this.autofocus = false,
     this.textInputAction,
@@ -162,15 +166,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
   bool _obscure = true;
   int _charCount = 0;
 
-  bool get _isPassword  => widget.type == AppTextFieldType.password;
+  bool get _isPassword => widget.type == AppTextFieldType.password;
   bool get _showCounter => widget.type == AppTextFieldType.bio;
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController(text: widget.initialValue);
-    _focusNode  = FocusNode();
-    _charCount  = widget.initialValue?.trim().length ?? 0;
+    _focusNode = FocusNode();
+    _charCount = widget.initialValue?.trim().length ?? 0;
   }
 
   @override
@@ -197,17 +201,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
       focusNode: _focusNode,
       autofocus: widget.autofocus,
       enabled: widget.enabled,
-      obscureText: _isPassword && _obscure,
+      obscureText: _isPassword ? _obscure : false,
       keyboardType: widget.type.keyboardType,
       inputFormatters: widget.type.inputFormatters,
       maxLines: widget.type.isMultiline ? 4 : 1,
       minLines: widget.type.isMultiline ? 3 : 1,
-      style: TextStyle(
-        color: cs.onSurface,
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-      ),
-      textInputAction: widget.textInputAction ??
+      style: TextStyle(color: cs.onSurface, fontSize: 14),
+      textInputAction:
+          widget.textInputAction ??
           (widget.type.isMultiline
               ? TextInputAction.newline
               : TextInputAction.next),
@@ -216,14 +217,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
       validator: widget.type.validate,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-        labelText: widget.type.label,
         hintText: widget.type.hint,
         hintStyle: TextStyle(
-          color: cs.onSurface.withOpacity(0.35),
+          color: cs.onSurface.withOpacity(0.55),
           fontSize: 13,
         ),
         labelStyle: TextStyle(
-          color: cs.onSurface.withOpacity(0.6),
+          color: cs.onSurface.withOpacity(0.7),
           fontSize: 13,
           fontWeight: FontWeight.w500,
         ),
@@ -249,18 +249,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
           horizontal: 16,
           vertical: widget.type.isMultiline ? 14 : 0,
         ),
-        border:             _buildBorder(cs.onSurface.withOpacity(0.12)),
-        enabledBorder:      _buildBorder(cs.onSurface.withOpacity(0.12)),
-        focusedBorder:      _buildBorder(cs.primary, width: 1.5),
-        errorBorder:        _buildBorder(cs.error),
+        border: _buildBorder(cs.outline),
+        enabledBorder: _buildBorder(cs.outline),
+        focusedBorder: _buildBorder(cs.primary, width: 1.5),
+        errorBorder: _buildBorder(cs.error),
         focusedErrorBorder: _buildBorder(cs.error, width: 1.5),
-        disabledBorder:     _buildBorder(cs.onSurface.withOpacity(0.06)),
+        disabledBorder: _buildBorder(cs.onSurface.withOpacity(0.06)),
         errorStyle: TextStyle(
           color: cs.error,
           fontSize: 11,
           fontWeight: FontWeight.w500,
         ),
       ),
+      onTapOutside: (_) => FocusScope.of(context).unfocus(),
     );
   }
 

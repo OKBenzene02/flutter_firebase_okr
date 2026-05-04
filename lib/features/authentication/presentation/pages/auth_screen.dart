@@ -19,7 +19,6 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.onSurface,
       body: BlocConsumer<AuthBlocBloc, AuthBlocState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -28,12 +27,12 @@ class _AuthScreenState extends State<AuthScreen> {
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
+              mainAxisAlignment: .center,
+              crossAxisAlignment: .center,
               children: [
-                AppImages.instagram(context).image(width: 64, fit: .contain),
-                const SizedBox(height: 20),
+                AppImages.instagram(context).image(width: 96, fit: .contain),
+                const SizedBox(height: 32),
                 _buildFormWidget(),
-                const SizedBox(height: 20),
-                _buildShowRegisterUserText(),
               ],
             ),
           );
@@ -50,6 +49,8 @@ class _AuthScreenState extends State<AuthScreen> {
           _buildEmailTextField(),
           const SizedBox(height: 16),
           _buildPasswordTextField(),
+          const SizedBox(height: 24),
+          _buildShowRegisterUserText(),
           const SizedBox(height: 24),
           _buildSubmitButton(context),
         ],
