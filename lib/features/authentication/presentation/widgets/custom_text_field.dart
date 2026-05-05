@@ -12,6 +12,7 @@ enum AppTextFieldType {
   phone,
   search,
   general,
+  confirmPassword,
 }
 
 // ─── Extension ───────────────────────────────────────────────────────────────
@@ -26,6 +27,7 @@ extension AppTextFieldTypeX on AppTextFieldType {
     AppTextFieldType.phone => 'Phone Number',
     AppTextFieldType.search => 'Search',
     AppTextFieldType.general => 'Text',
+    AppTextFieldType.confirmPassword => 'Confirm Password',
   };
 
   String get hint => switch (this) {
@@ -37,6 +39,7 @@ extension AppTextFieldTypeX on AppTextFieldType {
     AppTextFieldType.phone => '+1 (555) 000-0000',
     AppTextFieldType.search => 'Search...',
     AppTextFieldType.general => 'Enter text',
+    AppTextFieldType.confirmPassword => 'Confirm Password',
   };
 
   IconData get prefixIcon => switch (this) {
@@ -48,9 +51,12 @@ extension AppTextFieldTypeX on AppTextFieldType {
     AppTextFieldType.phone => Icons.phone_outlined,
     AppTextFieldType.search => Icons.search_rounded,
     AppTextFieldType.general => Icons.text_fields_rounded,
+    AppTextFieldType.confirmPassword => Icons.lock_outline_rounded,
   };
 
-  bool get obscureText => this == AppTextFieldType.password;
+  bool get obscureText =>
+      this == AppTextFieldType.password ||
+      this == AppTextFieldType.confirmPassword;
   bool get isMultiline => this == AppTextFieldType.bio;
 
   TextInputType get keyboardType => switch (this) {
@@ -58,6 +64,7 @@ extension AppTextFieldTypeX on AppTextFieldType {
     AppTextFieldType.phone => TextInputType.phone,
     AppTextFieldType.bio => TextInputType.multiline,
     AppTextFieldType.password => TextInputType.visiblePassword,
+    AppTextFieldType.confirmPassword => TextInputType.visiblePassword,
     _ => TextInputType.text,
   };
 
@@ -86,6 +93,7 @@ extension AppTextFieldTypeX on AppTextFieldType {
       AppTextFieldType.username => _validateUsername(v),
       AppTextFieldType.phone => _validatePhone(v),
       AppTextFieldType.displayName => _validateDisplayName(v),
+      AppTextFieldType.confirmPassword => v.isEmpty ? 'Please confirm your password' : null,
       _ => null,
     };
   }

@@ -4,7 +4,7 @@ part of 'auth_bloc_bloc.dart';
 sealed class AuthBlocEvent {}
 
 class AuthRegisterUserEvent extends AuthBlocEvent {
-  final UserEntity entity;
+  final UserEntity? entity;
   final String password;
 
   AuthRegisterUserEvent({required this.entity, required this.password});

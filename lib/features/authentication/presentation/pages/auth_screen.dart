@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_posts/core/utils/app_images.dart';
+import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
+import 'package:instagram_posts/features/authentication/presentation/pages/auth_register_screen.dart';
 import 'package:instagram_posts/features/authentication/presentation/widgets/custom_text_field.dart';
 
-class AuthScreen extends StatefulWidget {
-  const AuthScreen({super.key});
+class AuthLoginScreen extends StatefulWidget {
+  const AuthLoginScreen({super.key});
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  State<AuthLoginScreen> createState() => _AuthLoginScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
+class _AuthLoginScreenState extends State<AuthLoginScreen> {
   String _email = '';
   String _password = '';
   final _formKey = GlobalKey<FormState>();
@@ -76,11 +78,9 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget _buildSubmitButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        if (_formKey.currentState!.validate()) {
-          context.read<AuthBlocBloc>().add(
-            AuthSignInEvent(email: _email, password: _password),
-          );
-        }
+        context.read<AuthBlocBloc>().add(
+          AuthSignInEvent(email: _email, password: _password),
+        );
       },
       child: const Text('Sign In'),
     );
@@ -96,6 +96,7 @@ class _AuthScreenState extends State<AuthScreen> {
             child: GestureDetector(
               onTap: () {
                 // TODO: toggle to register mode
+                NavigationHelper.push(AuthRegisterScreen());
               },
               child: Text(
                 "Register",

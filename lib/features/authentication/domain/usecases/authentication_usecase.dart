@@ -25,4 +25,33 @@ class AuthenticationUsecase {
     var user = await _authenticationRepository.getCurrentUser();
     return user;
   }
+
+  static bool isRegisterEntityValid(
+    UserEntity? user,
+    String? password,
+    String? confirmPassword,
+  ) {
+    if (user == null) return false;
+
+    final name = user.name?.trim() ?? '';
+    final email = user.email?.trim() ?? '';
+    final pwd = password?.trim() ?? '';
+    final confirm = confirmPassword?.trim() ?? '';
+
+    if (name.isEmpty || email.isEmpty || pwd.isEmpty || confirm.isEmpty) {
+      return false;
+    }
+
+    final emailValid = RegExp(
+      r'^[\w\.\+\-]+@[\w\-]+\.[a-zA-Z]{2,}$',
+    ).hasMatch(email);
+    if (!emailValid) return false;
+
+    if (pwd.length < 8) return false;
+    if (!RegExp(r'[A-Z]').hasMatch(pwd)) return false;
+    if (!RegExp(r'[0-9]').hasMatch(pwd)) return false;
+    if (pwd != confirm) return false;
+
+    return true;
+  }
 }

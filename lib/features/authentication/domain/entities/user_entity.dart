@@ -1,5 +1,3 @@
-// create a simple user entity
-
 class UserEntity {
   final String? uid;
   final String? name;
@@ -14,4 +12,20 @@ class UserEntity {
     required this.profileImage,
     required this.isPrivate,
   });
+
+  UserEntity copyWith({
+    String? uid,
+    String? name,
+    String? email,
+    String? profileImage,
+    bool? isPrivate,
+  }) {
+    return UserEntity(
+      uid: uid ?? this.uid,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      profileImage: profileImage ?? this.profileImage,
+      isPrivate: isPrivate ?? this.isPrivate,
+    );
+  }
 }
