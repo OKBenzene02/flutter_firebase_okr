@@ -93,7 +93,8 @@ extension AppTextFieldTypeX on AppTextFieldType {
       AppTextFieldType.username => _validateUsername(v),
       AppTextFieldType.phone => _validatePhone(v),
       AppTextFieldType.displayName => _validateDisplayName(v),
-      AppTextFieldType.confirmPassword => v.isEmpty ? 'Please confirm your password' : null,
+      AppTextFieldType.confirmPassword =>
+        v.isEmpty ? 'Please confirm your password' : null,
       _ => null,
     };
   }
@@ -106,8 +107,9 @@ extension AppTextFieldTypeX on AppTextFieldType {
 
   String? _validatePassword(String v) {
     if (v.length < 8) return 'Password must be at least 8 characters';
-    if (!RegExp(r'[A-Z]').hasMatch(v))
+    if (!RegExp(r'[A-Z]').hasMatch(v)) {
       return 'Include at least one uppercase letter';
+    }
     if (!RegExp(r'[0-9]').hasMatch(v)) return 'Include at least one number';
     return null;
   }
@@ -116,15 +118,17 @@ extension AppTextFieldTypeX on AppTextFieldType {
     if (v.length < 3) return 'Username must be at least 3 characters';
     if (v.startsWith('.') || v.startsWith('_'))
       return 'Username cannot start with . or _';
-    if (!RegExp(r'^[a-zA-Z0-9_\.]+$').hasMatch(v))
+    if (!RegExp(r'^[a-zA-Z0-9_\.]+$').hasMatch(v)) {
       return 'Only letters, numbers, _ and . allowed';
+    }
     return null;
   }
 
   String? _validatePhone(String v) {
     final digitsOnly = v.replaceAll(RegExp(r'\D'), '');
-    if (digitsOnly.length < 7 || digitsOnly.length > 15)
+    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
       return 'Enter a valid phone number';
+    }
     return null;
   }
 
@@ -174,7 +178,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   bool _obscure = true;
   int _charCount = 0;
 
-  bool get _isPassword => widget.type == AppTextFieldType.password;
+  bool get _isPassword =>
+      widget.type == AppTextFieldType.password ||
+      widget.type == AppTextFieldType.confirmPassword;
   bool get _showCounter => widget.type == AppTextFieldType.bio;
 
   @override

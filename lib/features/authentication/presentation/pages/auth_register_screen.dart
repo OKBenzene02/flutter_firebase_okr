@@ -77,9 +77,9 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
           const SizedBox(height: 20),
           _buildConfirmPasswordField(),
           const SizedBox(height: 20),
-          _buildSignInRichText(),
-          const SizedBox(height: 20),
           _buildPrivateCheckbox(),
+          const SizedBox(height: 20),
+          _buildSignInRichText(),
           const SizedBox(height: 20),
           _buildSubmitButton(),
         ],
@@ -215,7 +215,7 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
       text: TextSpan(
         style: Theme.of(context).textTheme.bodyMedium,
         children: [
-          const TextSpan(text: 'Already have an account?'),
+          const TextSpan(text: 'Already have an account? '),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
             child: GestureDetector(
@@ -256,7 +256,9 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
       imageQuality: 80,
     );
     if (picked == null) return;
-    _updateEntity(_userEntity?.copyWith(profileImage: picked.path));
+    _updateEntity(
+      _userEntity?.copyWith(profileImage: picked.path, uid: "1334545245"),
+    );
   }
 
   void _submit() {

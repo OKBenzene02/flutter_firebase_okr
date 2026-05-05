@@ -76,13 +76,17 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
   }
 
   Widget _buildSubmitButton(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        context.read<AuthBlocBloc>().add(
-          AuthSignInEvent(email: _email, password: _password),
-        );
-      },
-      child: const Text('Sign In'),
+    return SizedBox(
+      width: .infinity,
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () {
+          context.read<AuthBlocBloc>().add(
+            AuthSignInEvent(email: _email, password: _password),
+          );
+        },
+        child: const Text('Sign In'),
+      ),
     );
   }
 
@@ -93,6 +97,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
         children: [
           const TextSpan(text: "Don't have an account? "),
           WidgetSpan(
+            alignment: PlaceholderAlignment.middle,
             child: GestureDetector(
               onTap: () {
                 // TODO: toggle to register mode
