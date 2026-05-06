@@ -8,6 +8,7 @@ Flutter firebase okr is a learning project for connecting the firebase services 
 - User sign-in and register (Firebase Auth, Firestore).
 - User dashboard sample - Instagram Home page, Community posts, Profile
 - Memory management techniques
+- Added flutter_gen for building assets, images, fonts, localizations at one go - `flutter pub run build_runner build --delete-conflicting-outputs`
 
 **Firebase setup**
 - Download firebase in windows or mac - [Firebase | Android | Setup](https://firebase.google.com/docs/flutter/setup?platform=android)
