@@ -8,6 +8,7 @@ import 'package:instagram_posts/features/authentication/domain/entities/user_ent
 import 'package:instagram_posts/features/authentication/domain/usecases/authentication_usecase.dart';
 import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
 import 'package:instagram_posts/features/authentication/presentation/widgets/custom_text_field.dart';
+import 'package:instagram_posts/features/authentication/presentation/widgets/logo_title.dart';
 
 class AuthRegisterScreen extends StatefulWidget {
   const AuthRegisterScreen({super.key});
@@ -50,7 +51,7 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
                 mainAxisAlignment: .center,
                 crossAxisAlignment: .center,
                 children: [
-                  AppImages.instagram(context).image(width: 64, fit: .contain),
+                  LogoTitle(textSize: 16, logoSize: 32),
                   const SizedBox(height: 32),
                   _buildFormWidget(),
                 ],

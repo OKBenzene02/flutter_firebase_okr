@@ -241,11 +241,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
           fontSize: 13,
           fontWeight: FontWeight.w500,
         ),
-        floatingLabelStyle: TextStyle(
-          color: cs.primary,
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        ),
         prefixIcon: Icon(
           widget.type.prefixIcon,
           size: 18,
@@ -263,8 +258,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           horizontal: 16,
           vertical: widget.type.isMultiline ? 14 : 0,
         ),
-        border: _buildBorder(cs.outline),
-        enabledBorder: _buildBorder(cs.outline),
+        border: _buildBorder(cs.surface),
+        enabledBorder: _buildBorder(cs.surface),
         focusedBorder: _buildBorder(cs.primary, width: 1.5),
         errorBorder: _buildBorder(cs.error),
         focusedErrorBorder: _buildBorder(cs.error, width: 1.5),

@@ -23,6 +23,10 @@ class DarkTheme {
     // Text on buttons
     onPrimary: Colors.black,
     onSecondary: Colors.black,
+
+    // constant
+    onPrimaryFixed: Colors.white,
+    onSecondaryFixed: Colors.black,
   );
 
   static final ThemeData darkThemeConfig = ThemeData(

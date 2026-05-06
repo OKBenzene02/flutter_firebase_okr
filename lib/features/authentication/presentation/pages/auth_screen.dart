@@ -5,6 +5,7 @@ import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
 import 'package:instagram_posts/features/authentication/presentation/pages/auth_register_screen.dart';
 import 'package:instagram_posts/features/authentication/presentation/widgets/custom_text_field.dart';
+import 'package:instagram_posts/features/authentication/presentation/widgets/logo_title.dart';
 
 class AuthLoginScreen extends StatefulWidget {
   const AuthLoginScreen({super.key});
@@ -32,15 +33,21 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
               mainAxisAlignment: .center,
               crossAxisAlignment: .center,
               children: [
-                AppImages.instagram(context).image(width: 96, fit: .contain),
-                const SizedBox(height: 32),
+                Spacer(flex: 1),
+                _buildTitle(),
+                Spacer(),
                 _buildFormWidget(),
+                Spacer(flex: 2),
               ],
             ),
           );
         },
       ),
     );
+  }
+
+  Widget _buildTitle() {
+    return LogoTitle(logoSize: 64, textSize: 24);
   }
 
   Widget _buildFormWidget() {
@@ -100,7 +107,6 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
             alignment: PlaceholderAlignment.middle,
             child: GestureDetector(
               onTap: () {
-                // TODO: toggle to register mode
                 NavigationHelper.push(AuthRegisterScreen());
               },
               child: Text(

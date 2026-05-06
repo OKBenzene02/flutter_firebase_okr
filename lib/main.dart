@@ -1,11 +1,13 @@
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:instagram_posts/core/dependencies/bloc_provider_helper.dart';
 import 'package:instagram_posts/core/dependencies/init_dependencies.dart';
 import 'package:instagram_posts/core/services/firebase/firebase_options.dart';
 import 'package:instagram_posts/core/themes/dark_theme.dart';
 import 'package:instagram_posts/core/themes/light_theme.dart';
+import 'package:instagram_posts/core/utils/custom_loaders.dart';
 import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/presentation/pages/auth_screen.dart';
 
@@ -26,8 +28,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CustomLoaders.config(context);
     return BlocProviderHelper(
       child: MaterialApp(
+        builder: EasyLoading.init(),
         navigatorKey: NavigationHelper.navigatorKey,
         title: 'Instagramify',
         darkTheme: DarkTheme.darkThemeConfig,
