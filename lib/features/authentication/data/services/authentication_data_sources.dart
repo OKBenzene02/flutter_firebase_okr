@@ -46,7 +46,7 @@ class AuthenticationDataSources {
       throw Exception('Failed registering user with ${user?.email}');
     }
 
-    final userModel = user?.copyWith(uid: user.uid);
+    final userModel = user?.copyWith(uid: createUser.uid);
 
     await _firebaseFirestore
         .collection('users')

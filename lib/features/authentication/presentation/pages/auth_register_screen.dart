@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:instagram_posts/core/utils/app_images.dart';
 import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
 import 'package:instagram_posts/features/authentication/domain/usecases/authentication_usecase.dart';
@@ -258,7 +257,7 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
     );
     if (picked == null) return;
     _updateEntity(
-      _userEntity?.copyWith(profileImage: picked.path, uid: "1334545245"),
+      _userEntity?.copyWith(profileImage: picked.path),
     );
   }
 
