@@ -2,10 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:instagram_posts/core/utils/custom_banner.dart';
 import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
 import 'package:instagram_posts/features/authentication/domain/usecases/authentication_usecase.dart';
 import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
+import 'package:instagram_posts/features/authentication/presentation/pages/auth_screen.dart';
 import 'package:instagram_posts/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:instagram_posts/features/authentication/presentation/widgets/logo_title.dart';
 
@@ -21,8 +23,6 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
   String _password = '';
   String _confirmPassword = '';
 
-  bool _isPrivate = false;
-  String? _profileImagePath;
   UserEntity? _userEntity = UserEntity(
     uid: '',
     name: '',
@@ -40,7 +40,7 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
       ),
       body: BlocConsumer<AuthBlocBloc, AuthBlocState>(
         listener: (context, state) {
-          // TODO: implement listener
+          _getListenerStates(context, state);
         },
         builder: (context, state) {
           return Padding(
@@ -60,6 +60,17 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
         },
       ),
     );
+  }
+
+  void _getListenerStates(BuildContext context, AuthBlocState state) {
+    switch (state) {
+      case AuthRegisterUserSuccessState():
+        _navigateToSignInPage();
+      case AuthErrorState():
+        _showRegistrationErrorBanner();
+      default:
+        break;
+    }
   }
 
   Widget _buildFormWidget() {
@@ -249,6 +260,24 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
     );
   }
 
+  void _navigateToSignInPage() {
+    CustomBanner.show(
+      context,
+      message:
+          'User registered successfully! Login with the registered credentials.',
+      bannerType: .success,
+    );
+    NavigationHelper.pushReplacement(AuthLoginScreen());
+  }
+
+  void _showRegistrationErrorBanner() {
+    CustomBanner.show(
+      context,
+      message: 'User registration failed, try again some time later.',
+      bannerType: .error,
+    );
+  }
+
   Future<void> _pickImage() async {
     final picker = ImagePicker();
     final picked = await picker.pickImage(
@@ -256,9 +285,7 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
       imageQuality: 80,
     );
     if (picked == null) return;
-    _updateEntity(
-      _userEntity?.copyWith(profileImage: picked.path),
-    );
+    _updateEntity(_userEntity?.copyWith(profileImage: picked.path));
   }
 
   void _submit() {
@@ -278,6 +305,11 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
     _password,
     _confirmPassword,
   );
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }
 
 class _DashedCirclePainter extends CustomPainter {

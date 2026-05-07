@@ -54,4 +54,19 @@ class AuthenticationUsecase {
 
     return true;
   }
+
+  static bool isSignInUserValid(String? email, String? password) {
+    final emailString = email?.trim() ?? '';
+    final passwordString = password?.trim() ?? '';
+    final emailValid = RegExp(
+      r'^[\w\.\+\-]+@[\w\-]+\.[a-zA-Z]{2,}$',
+    ).hasMatch(emailString);
+    if (!emailValid) return false;
+
+    if (passwordString.length < 8) return false;
+    if (!RegExp(r'[A-Z]').hasMatch(passwordString)) return false;
+    if (!RegExp(r'[0-9]').hasMatch(passwordString)) return false;
+
+    return true;
+  }
 }

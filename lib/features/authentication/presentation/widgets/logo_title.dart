@@ -17,8 +17,8 @@ class LogoTitle extends StatelessWidget {
           'Instagramify',
           style: TextStyle(
             fontSize: textSize,
-            fontWeight: .w400,
-            fontFamily: 'Playwrite',
+            fontWeight: .w900,
+            fontFamily: 'DancingScript',
             letterSpacing: 1.5,
           ),
         ),

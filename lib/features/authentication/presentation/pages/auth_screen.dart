@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instagram_posts/core/utils/app_images.dart';
+import 'package:instagram_posts/core/utils/custom_banner.dart';
 import 'package:instagram_posts/core/utils/navigation_helper.dart';
+import 'package:instagram_posts/features/authentication/domain/usecases/authentication_usecase.dart';
 import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
 import 'package:instagram_posts/features/authentication/presentation/pages/auth_register_screen.dart';
 import 'package:instagram_posts/features/authentication/presentation/widgets/custom_text_field.dart';
@@ -24,7 +25,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
     return Scaffold(
       body: BlocConsumer<AuthBlocBloc, AuthBlocState>(
         listener: (context, state) {
-          // TODO: implement listener
+          _getListenersStates(context, state);
         },
         builder: (context, state) {
           return Padding(
@@ -46,8 +47,20 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
     );
   }
 
+  void _getListenersStates(BuildContext context, AuthBlocState state) {
+    if (state is AuthSignInSuccessState) {
+      CustomBanner.show(
+        context,
+        message: 'Logged in successfully',
+        bannerType: .success,
+      );
+    } else if (state is AuthErrorState) {
+      CustomBanner.show(context, message: state.message, bannerType: .error);
+    }
+  }
+
   Widget _buildTitle() {
-    return LogoTitle(logoSize: 64, textSize: 24);
+    return LogoTitle(logoSize: 64, textSize: 28);
   }
 
   Widget _buildFormWidget() {
@@ -70,14 +83,19 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
   Widget _buildEmailTextField() {
     return CustomTextField(
       type: AppTextFieldType.email,
-      onValue: (v) => _email = v,
+      textInputAction: TextInputAction.done,
+      onValue: (v) => setState(() {
+        _email = v;
+      }),
     );
   }
 
   Widget _buildPasswordTextField() {
     return CustomTextField(
       type: AppTextFieldType.password,
-      onValue: (v) => _password = v,
+      onValue: (v) => setState(() {
+        _password = v;
+      }),
       textInputAction: TextInputAction.done,
     );
   }
@@ -87,15 +105,20 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
       width: .infinity,
       height: 50,
       child: ElevatedButton(
-        onPressed: () {
-          context.read<AuthBlocBloc>().add(
-            AuthSignInEvent(email: _email, password: _password),
-          );
-        },
+        onPressed: _isValid ? _callSignInUserEvent : null,
         child: const Text('Sign In'),
       ),
     );
   }
+
+  void _callSignInUserEvent() {
+    context.read<AuthBlocBloc>().add(
+      AuthSignInEvent(email: _email, password: _password),
+    );
+  }
+
+  bool get _isValid =>
+      AuthenticationUsecase.isSignInUserValid(_email, _password);
 
   Widget _buildShowRegisterUserText() {
     return RichText(
@@ -121,5 +144,10 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

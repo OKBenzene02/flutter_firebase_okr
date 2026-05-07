@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
     return BlocProviderHelper(
       child: MaterialApp(
         builder: EasyLoading.init(),
+        scaffoldMessengerKey: NavigationHelper.scaffoldMessengerKey,
         navigatorKey: NavigationHelper.navigatorKey,
         title: 'Instagramify',
         darkTheme: DarkTheme.darkThemeConfig,
