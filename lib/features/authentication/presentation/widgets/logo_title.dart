@@ -24,6 +24,5 @@ class LogoTitle extends StatelessWidget {
         ),
       ],
     );
-    ;
   }
 }
