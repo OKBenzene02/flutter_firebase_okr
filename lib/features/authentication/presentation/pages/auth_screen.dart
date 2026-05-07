@@ -7,6 +7,7 @@ import 'package:instagram_posts/features/authentication/presentation/bloc/auth_b
 import 'package:instagram_posts/features/authentication/presentation/pages/auth_register_screen.dart';
 import 'package:instagram_posts/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:instagram_posts/features/authentication/presentation/widgets/logo_title.dart';
+import 'package:instagram_posts/features/dashboard/presentation/dashboard.dart';
 
 class AuthLoginScreen extends StatefulWidget {
   const AuthLoginScreen({super.key});
@@ -54,6 +55,7 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
         message: 'Logged in successfully',
         bannerType: .success,
       );
+      NavigationHelper.pushReplacement(Dashboard(user: state.entity));
     } else if (state is AuthErrorState) {
       CustomBanner.show(context, message: state.message, bannerType: .error);
     }

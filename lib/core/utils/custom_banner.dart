@@ -16,7 +16,9 @@ class CustomBanner {
       ..hideCurrentMaterialBanner()
       ..showMaterialBanner(
         MaterialBanner(
-          dividerColor: isSuccess ? Colors.lightGreenAccent : Colors.red,
+          dividerColor: isSuccess
+              ? Theme.of(context).colorScheme.secondary
+              : Theme.of(context).colorScheme.error,
           content: Padding(
             padding: EdgeInsetsGeometry.symmetric(vertical: 16, horizontal: 4),
             child: Row(
@@ -26,7 +28,9 @@ class CustomBanner {
                   isSuccess
                       ? Icons.check_circle_outline_rounded
                       : Icons.error_outline_rounded,
-                  color: isSuccess ? Colors.lightGreenAccent : Colors.red,
+                  color: isSuccess
+                      ? Theme.of(context).colorScheme.secondary
+                      : Theme.of(context).colorScheme.error,
                 ),
                 Expanded(
                   child: Text(
@@ -34,7 +38,9 @@ class CustomBanner {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: .w500,
-                      color: isSuccess ? Colors.lightGreenAccent : Colors.red,
+                      color: isSuccess
+                          ? Theme.of(context).colorScheme.secondary
+                          : Theme.of(context).colorScheme.error,
                     ),
                   ),
                 ),
