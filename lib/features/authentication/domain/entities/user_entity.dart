@@ -28,4 +28,26 @@ class UserEntity {
       isPrivate: isPrivate ?? this.isPrivate,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'uid': uid,
+      'name': name,
+      'email': email,
+      'profileImage': profileImage,
+      'isPrivate': isPrivate,
+    };
+  }
+
+  factory UserEntity.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    return UserEntity(
+      uid: json['uid'],
+      name: json['name'],
+      email: json['email'],
+      profileImage: json['profileImage'],
+      isPrivate: json['isPrivate'],
+    );
+  }
 }

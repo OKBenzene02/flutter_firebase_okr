@@ -57,23 +57,4 @@ class AuthenticationDataSources {
   Future<void> signOut() async {
     await _auth.signOut();
   }
-
-  Future<UserModel?> getCurrentUser() async {
-    final firebaseUser = _auth.currentUser;
-
-    if (firebaseUser == null) {
-      return null;
-    }
-
-    final doc = await _firebaseFirestore
-        .collection('users')
-        .doc(firebaseUser.uid)
-        .get();
-
-    if (!doc.exists) {
-      return null;
-    }
-
-    return UserModel.fromJson(doc.data());
-  }
 }

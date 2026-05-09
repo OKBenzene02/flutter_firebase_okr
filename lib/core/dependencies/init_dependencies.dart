@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:instagram_posts/core/services/shared_preferences/shared_pref_helper.dart';
 import 'package:instagram_posts/features/authentication/data/repository/authentication_repository_impl.dart';
 import 'package:instagram_posts/features/authentication/data/services/authentication_data_sources.dart';
 import 'package:instagram_posts/features/authentication/domain/repository/authentication_repository.dart';
@@ -11,6 +12,7 @@ final getIt = GetIt.instance;
 Future<void> initializeDependencies() async {
   await _configureApp();
   await _initAuthLayer();
+  await SharedPrefHelper().init();
 }
 
 // Configure app wide dependencies

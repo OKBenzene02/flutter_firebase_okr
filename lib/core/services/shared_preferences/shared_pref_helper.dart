@@ -47,4 +47,13 @@ class SharedPrefHelper {
   String? getString({required String key}) {
     return _prefs?.getString(key);
   }
+
+  // ---- Remove key or Clear shared prefs ----
+  void removeKey({required String key}) {
+    _prefs?.remove(key);
+  }
+
+  void clearSharedPrefs() {
+    _prefs?.clear();
+  }
 }

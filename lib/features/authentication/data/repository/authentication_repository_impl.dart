@@ -10,11 +10,6 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     : _services = services;
 
   @override
-  Future<UserEntity?> getCurrentUser() async {
-    return await _services.getCurrentUser();
-  }
-
-  @override
   Future<void> registerUser(UserEntity? user, String? password) async {
     final userModel = user?.toModel();
     await _services.registerUser(userModel, password);

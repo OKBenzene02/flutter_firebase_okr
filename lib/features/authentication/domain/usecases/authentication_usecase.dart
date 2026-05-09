@@ -21,11 +21,6 @@ class AuthenticationUsecase {
     await _authenticationRepository.signOut();
   }
 
-  Future<UserEntity?> getCurrentUser() async {
-    var user = await _authenticationRepository.getCurrentUser();
-    return user;
-  }
-
   static bool isRegisterEntityValid(
     UserEntity? user,
     String? password,

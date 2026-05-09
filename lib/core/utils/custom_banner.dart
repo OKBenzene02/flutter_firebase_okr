@@ -52,7 +52,9 @@ class CustomBanner {
       );
 
     Future.delayed(const Duration(seconds: 4), () {
-      messenger.hideCurrentMaterialBanner();
+      if (messenger.mounted) {
+        messenger.hideCurrentMaterialBanner();
+      }
     });
   }
 }
