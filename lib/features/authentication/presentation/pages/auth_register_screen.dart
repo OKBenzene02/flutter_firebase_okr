@@ -29,6 +29,11 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
     email: '',
     profileImage: null,
     isPrivate: false,
+    isVerified: null,
+    followersCount: null,
+    followingCount: null,
+    postsCount: null,
+    isOnline: null,
   );
 
   @override

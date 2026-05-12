@@ -7,6 +7,11 @@ import 'package:instagram_posts/features/authentication/data/services/authentica
 import 'package:instagram_posts/features/authentication/domain/repository/authentication_repository.dart';
 import 'package:instagram_posts/features/authentication/domain/usecases/authentication_usecase.dart';
 import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
+import 'package:instagram_posts/features/dashboard/data/repository/dashboard_repository_impl.dart';
+import 'package:instagram_posts/features/dashboard/data/service/dashboard_services.dart';
+import 'package:instagram_posts/features/dashboard/domain/repository/dashboard_repository.dart';
+import 'package:instagram_posts/features/dashboard/domain/usecases/dashboard_usecase.dart';
+import 'package:instagram_posts/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 
 final getIt = GetIt.instance;
 Future<void> initializeDependencies() async {
@@ -48,5 +53,23 @@ Future<void> _initAuthLayer() async {
   // 👌Register bloc dependency for Auth
   getIt.registerFactory<AuthBlocBloc>(
     () => AuthBlocBloc(authenticationUsecase: getIt<AuthenticationUsecase>()),
+  );
+
+  // Dashboard
+  getIt.registerLazySingleton<DashboardServices>(
+    () => DashboardServices(
+      auth: getIt<FirebaseAuth>(),
+      firebaseFirestore: getIt<FirebaseFirestore>(),
+    ),
+  );
+  getIt.registerLazySingleton<DashboardRepository>(
+    () =>
+        DashboardRepositoryImpl(dashboardServices: getIt<DashboardServices>()),
+  );
+  getIt.registerFactory<DashboardUsecase>(
+    () => DashboardUsecase(dashboardRepository: getIt<DashboardRepository>()),
+  );
+  getIt.registerFactory<DashboardBloc>(
+    () => DashboardBloc(dashboardUsecase: getIt<DashboardUsecase>()),
   );
 }

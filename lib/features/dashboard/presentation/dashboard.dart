@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_posts/core/utils/app_images.dart';
+import 'package:instagram_posts/core/utils/custom_banner.dart';
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
-import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
+import 'package:instagram_posts/features/dashboard/domain/entities/posts_entity.dart';
+import 'package:instagram_posts/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 
 class Dashboard extends StatefulWidget {
   final UserEntity? user;
@@ -13,45 +15,62 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  List<PostsEntity>? _posts;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<DashboardBloc>().add(LoadDashboardPostsEvent());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsetsGeometry.symmetric(vertical: 12),
-          child: AppImages.instagram(context).image(width: 8, fit: .contain),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: AppImages.instagram(
+            context,
+          ).image(width: 8, fit: BoxFit.contain),
         ),
         backgroundColor: Colors.transparent,
-        title: Text(
+        title: const Text(
           'Instagram',
           style: TextStyle(
             fontSize: 24,
-            fontWeight: .w900,
+            fontWeight: FontWeight.w900,
             fontFamily: 'DancingScript',
             letterSpacing: 1.5,
           ),
         ),
-        bottomOpacity: 1,
       ),
-      body: BlocConsumer<AuthBlocBloc, AuthBlocState>(
+      body: BlocListener<DashboardBloc, DashboardState>(
         listener: (context, state) {
-          // TODO: implement listener
+          if (state is DashboardPostsSuccessState) {
+            setState(() => _posts = state.posts);
+          } else if (state is DashboardErrorState) {
+            CustomBanner.show(context, message: state.error);
+          }
         },
-        builder: (context, state) {
-          return Center(
-            child: Column(
-              children: [
-                Text('This is the Dashboard of the user ${widget.user?.name}'),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<AuthBlocBloc>().add(AuthSignOutEvent());
-                  },
-                  child: Text('Sign Out'),
-                ),
-              ],
-            ),
-          );
-        },
+        child: BlocBuilder<DashboardBloc, DashboardState>(
+          builder: (context, state) {
+            return ListView.builder(
+              itemCount: _posts?.length,
+              itemBuilder: (context, index) {
+                final post = _posts?[index];
+                return ListTile(
+                  title: Text(post?.caption ?? 'No caption'),
+                  subtitle: Text('By ${post?.user?.name ?? 'Unknown'}'),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
