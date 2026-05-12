@@ -123,9 +123,7 @@ class UserEntity {
           ? Timestamp.fromDate(lastSeen ?? DateTime.now())
           : null,
 
-      'createdAt': createdAt != null
-          ? Timestamp.fromDate(createdAt ?? DateTime.now())
-          : null,
+      'createdAt': createdAt?.toIso8601String(),
     };
   }
 
@@ -156,8 +154,8 @@ class UserEntity {
           : null,
 
       createdAt: json['createdAt'] != null
-          ? (json['createdAt'] as Timestamp).toDate()
-          : null,
+        ? DateTime.parse(json['createdAt'])
+        : null,
     );
   }
 }
