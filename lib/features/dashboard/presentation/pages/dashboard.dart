@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_posts/core/utils/app_images.dart';
+import 'package:instagram_posts/core/utils/custom_app_bar.dart';
 import 'package:instagram_posts/core/utils/custom_banner.dart';
 import 'package:instagram_posts/core/utils/custom_loaders.dart';
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
@@ -30,14 +31,14 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar(
         leading: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: AppImages.instagram(
             context,
-          ).image(width: 8, fit: BoxFit.contain),
+          ).image(width: 24, fit: BoxFit.contain),
         ),
-        backgroundColor: Colors.transparent,
         title: const Text(
           'Instagram',
           style: TextStyle(

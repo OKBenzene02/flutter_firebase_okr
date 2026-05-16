@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_posts/core/utils/app_images.dart';
 import 'package:instagram_posts/core/utils/custom_image_widget.dart';
 import 'package:instagram_posts/features/dashboard/domain/entities/posts_entity.dart';
 
@@ -180,18 +181,35 @@ class _PostCardState extends State<PostCard> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: Row(
+        spacing: 4,
         children: [
           // like
           GestureDetector(
             onTap: () => setState(() => _isLiked = !_isLiked),
             child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              child: Icon(
-                _isLiked ? Icons.favorite : Icons.favorite_border,
-                key: ValueKey(_isLiked),
-                color: _isLiked ? Colors.red : null,
-                size: 26,
-              ),
+              duration: const Duration(milliseconds: 300),
+              switchInCurve: Curves.elasticOut,
+              switchOutCurve: Curves.easeIn,
+              transitionBuilder: (child, animation) {
+                return ScaleTransition(scale: animation, child: child);
+              },
+              child: _isLiked
+                  ? CustomImageWidget.svg(
+                      key: const ValueKey('liked'),
+                      assetPath: AppImages.likeFilled(context),
+                      width: 20,
+                      height: 20,
+                      color: ColorFilter.mode(
+                        Theme.of(context).colorScheme.error,
+                        .srcIn,
+                      ),
+                    )
+                  : CustomImageWidget.svg(
+                      key: const ValueKey('unliked'),
+                      assetPath: AppImages.like(context),
+                      width: 20,
+                      height: 20,
+                    ),
             ),
           ),
           const SizedBox(width: 14),
@@ -199,14 +217,22 @@ class _PostCardState extends State<PostCard> {
           // comment
           GestureDetector(
             onTap: () {},
-            child: const Icon(Icons.chat_bubble_outline, size: 24),
+            child: CustomImageWidget.svg(
+              assetPath: AppImages.comment(context),
+              width: 20,
+              height: 20,
+            ),
           ),
           const SizedBox(width: 14),
 
           // share
           GestureDetector(
             onTap: () {},
-            child: const Icon(Icons.send_outlined, size: 24),
+            child: CustomImageWidget.svg(
+              assetPath: AppImages.send(context),
+              width: 20,
+              height: 20,
+            ),
           ),
 
           const Spacer(),
@@ -214,7 +240,11 @@ class _PostCardState extends State<PostCard> {
           // bookmark
           GestureDetector(
             onTap: () {},
-            child: const Icon(Icons.bookmark_border, size: 26),
+            child: CustomImageWidget.svg(
+              assetPath: AppImages.bookmark(context),
+              width: 20,
+              height: 20,
+            ),
           ),
         ],
       ),

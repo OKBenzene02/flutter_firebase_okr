@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-enum ImageType { local, network, cached }
+enum ImageType { local, network, cached, svg }
 
 class CustomImageWidget extends StatefulWidget {
   final String? url;
@@ -11,6 +12,7 @@ class CustomImageWidget extends StatefulWidget {
   final BoxFit fit;
   final Widget? placeholder;
   final Widget? errorWidget;
+  final ColorFilter? color;
   final ImageType type;
 
   const CustomImageWidget.asset({
@@ -22,7 +24,8 @@ class CustomImageWidget extends StatefulWidget {
     this.placeholder,
   }) : type = ImageType.local,
        url = null,
-       errorWidget = null;
+       errorWidget = null,
+       color = null;
 
   const CustomImageWidget.network({
     super.key,
@@ -33,7 +36,8 @@ class CustomImageWidget extends StatefulWidget {
     this.placeholder,
     this.errorWidget,
   }) : type = ImageType.network,
-       assetPath = null;
+       assetPath = null,
+       color = null;
 
   const CustomImageWidget.cached({
     super.key,
@@ -44,7 +48,20 @@ class CustomImageWidget extends StatefulWidget {
     this.placeholder,
     this.errorWidget,
   }) : type = ImageType.cached,
-       assetPath = null;
+       assetPath = null,
+       color = null;
+
+  const CustomImageWidget.svg({
+    super.key,
+    this.assetPath,
+    this.height,
+    this.width,
+    this.color,
+    this.fit = BoxFit.cover,
+    this.placeholder,
+  }) : type = ImageType.svg,
+       url = null,
+       errorWidget = null;
 
   @override
   State<CustomImageWidget> createState() => _CustomImageWidgetState();
@@ -60,6 +77,8 @@ class _CustomImageWidgetState extends State<CustomImageWidget> {
         return _buildNetworkImage(context);
       case .cached:
         return _buildCachedImage(context);
+      case .svg:
+        return _buildSVGImage(context);
     }
   }
 
@@ -73,6 +92,22 @@ class _CustomImageWidgetState extends State<CustomImageWidget> {
       width: widget.width,
       height: widget.height,
       fit: widget.fit,
+      errorBuilder: (context, error, stackTrace) =>
+          widget.placeholder ?? _placeholder(context),
+    );
+  }
+
+  Widget _buildSVGImage(BuildContext context) {
+    if (widget.assetPath == null || widget.assetPath!.isEmpty) {
+      return _placeholder(context);
+    }
+
+    return SvgPicture.asset(
+      widget.assetPath!,
+      width: widget.width,
+      height: widget.height,
+      fit: widget.fit,
+      colorFilter: widget.color,
       errorBuilder: (context, error, stackTrace) =>
           widget.placeholder ?? _placeholder(context),
     );

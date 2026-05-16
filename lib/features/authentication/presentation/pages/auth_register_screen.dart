@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:instagram_posts/core/utils/custom_app_bar.dart';
 import 'package:instagram_posts/core/utils/custom_banner.dart';
 import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
@@ -39,9 +40,8 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: CustomAppBar(
         title: Text('Instagramify', style: TextStyle(fontSize: 18)),
-        backgroundColor: Colors.transparent,
       ),
       body: BlocConsumer<AuthBlocBloc, AuthBlocState>(
         listener: (context, state) {
