@@ -16,6 +16,9 @@ class $AssetsDarkGen {
 
   /// Directory path: assets/dark/image
   $AssetsDarkImageGen get image => const $AssetsDarkImageGen();
+
+  /// Directory path: assets/dark/svg
+  $AssetsDarkSvgGen get svg => const $AssetsDarkSvgGen();
 }
 
 class $AssetsLightGen {
@@ -23,6 +26,9 @@ class $AssetsLightGen {
 
   /// Directory path: assets/light/image
   $AssetsLightImageGen get image => const $AssetsLightImageGen();
+
+  /// Directory path: assets/light/svg
+  $AssetsLightSvgGen get svg => const $AssetsLightSvgGen();
 }
 
 class $AssetsDarkImageGen {
@@ -36,6 +42,54 @@ class $AssetsDarkImageGen {
   List<AssetGenImage> get values => [instagramLight];
 }
 
+class $AssetsDarkSvgGen {
+  const $AssetsDarkSvgGen();
+
+  /// File path: assets/dark/svg/bookmark_filled_icon.svg
+  String get bookmarkFilledIcon => 'assets/dark/svg/bookmark_filled_icon.svg';
+
+  /// File path: assets/dark/svg/bookmark_icon.svg
+  String get bookmarkIcon => 'assets/dark/svg/bookmark_icon.svg';
+
+  /// File path: assets/dark/svg/comment_filled_icon.svg
+  String get commentFilledIcon => 'assets/dark/svg/comment_filled_icon.svg';
+
+  /// File path: assets/dark/svg/comment_icon.svg
+  String get commentIcon => 'assets/dark/svg/comment_icon.svg';
+
+  /// File path: assets/dark/svg/like_filled_icon.svg
+  String get likeFilledIcon => 'assets/dark/svg/like_filled_icon.svg';
+
+  /// File path: assets/dark/svg/like_icon.svg
+  String get likeIcon => 'assets/dark/svg/like_icon.svg';
+
+  /// File path: assets/dark/svg/overflow_menu_icon.svg
+  String get overflowMenuIcon => 'assets/dark/svg/overflow_menu_icon.svg';
+
+  /// File path: assets/dark/svg/placeholder_icon.svg
+  String get placeholderIcon => 'assets/dark/svg/placeholder_icon.svg';
+
+  /// File path: assets/dark/svg/send_filled_icon.svg
+  String get sendFilledIcon => 'assets/dark/svg/send_filled_icon.svg';
+
+  /// File path: assets/dark/svg/send_icon.svg
+  String get sendIcon => 'assets/dark/svg/send_icon.svg';
+
+  /// List of all assets
+  List<String> get values => [
+    bookmarkFilledIcon,
+    bookmarkIcon,
+    commentFilledIcon,
+    commentIcon,
+    likeFilledIcon,
+    likeIcon,
+    overflowMenuIcon,
+    placeholderIcon,
+    sendFilledIcon,
+    sendIcon,
+  ];
+}
+
 class $AssetsLightImageGen {
   const $AssetsLightImageGen();
 
@@ -45,6 +99,54 @@ class $AssetsLightImageGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [instagramLight];
+}
+
+class $AssetsLightSvgGen {
+  const $AssetsLightSvgGen();
+
+  /// File path: assets/light/svg/bookmark_filled_icon.svg
+  String get bookmarkFilledIcon => 'assets/light/svg/bookmark_filled_icon.svg';
+
+  /// File path: assets/light/svg/bookmark_icon.svg
+  String get bookmarkIcon => 'assets/light/svg/bookmark_icon.svg';
+
+  /// File path: assets/light/svg/comment_filled_icon.svg
+  String get commentFilledIcon => 'assets/light/svg/comment_filled_icon.svg';
+
+  /// File path: assets/light/svg/comment_icon.svg
+  String get commentIcon => 'assets/light/svg/comment_icon.svg';
+
+  /// File path: assets/light/svg/like_filled_icon.svg
+  String get likeFilledIcon => 'assets/light/svg/like_filled_icon.svg';
+
+  /// File path: assets/light/svg/like_icon.svg
+  String get likeIcon => 'assets/light/svg/like_icon.svg';
+
+  /// File path: assets/light/svg/overflow_menu_icon.svg
+  String get overflowMenuIcon => 'assets/light/svg/overflow_menu_icon.svg';
+
+  /// File path: assets/light/svg/placeholder_icon.svg
+  String get placeholderIcon => 'assets/light/svg/placeholder_icon.svg';
+
+  /// File path: assets/light/svg/send_filled_icon.svg
+  String get sendFilledIcon => 'assets/light/svg/send_filled_icon.svg';
+
+  /// File path: assets/light/svg/send_icon.svg
+  String get sendIcon => 'assets/light/svg/send_icon.svg';
+
+  /// List of all assets
+  List<String> get values => [
+    bookmarkFilledIcon,
+    bookmarkIcon,
+    commentFilledIcon,
+    commentIcon,
+    likeFilledIcon,
+    likeIcon,
+    overflowMenuIcon,
+    placeholderIcon,
+    sendFilledIcon,
+    sendIcon,
+  ];
 }
 
 class Assets {
