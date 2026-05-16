@@ -13,32 +13,37 @@ class DashboardServices {
   }) : _auth = auth,
        _firebaseFirestore = firebaseFirestore;
 
-  Stream<List<PostsModels>?> getPosts() async* {
+  Stream<List<PostsModels>> getPosts() {
     final currUser = SessionManager.getUser();
-    if (currUser == null) {
-      yield null;
-      return;
-    }
+    if (currUser == null) return Stream.error('User not logged in');
 
-    yield* _firebaseFirestore
+    return _firebaseFirestore
         .collection('posts')
         .orderBy('createdAt', descending: true)
         .snapshots()
         .asyncMap((snapshot) async {
-          List<PostsModels> posts = [];
+          final List<PostsModels> posts = [];
 
           for (final doc in snapshot.docs) {
-            final docs = doc.data();
-            final DocumentReference userRef = docs['user'];
-            final userSnapshot = await userRef.get();
+            final data = doc.data();
+            final String? userId = data['userId'];
+            if (userId == null) continue;
 
-            final postData = {...docs, 'user': userSnapshot.data()};
+            final userSnapshot = await _firebaseFirestore
+                .collection('users')
+                .doc(userId) // ← fetch user by userId string
+                .get();
 
-            final post = PostsModels.fromJson(postData);
-            posts.add(post);
+            if (!userSnapshot.exists) continue;
+            final userData = {
+              ...userSnapshot.data() as Map<String, dynamic>,
+              'userId': userId,
+            };
+            final postData = {...data, 'postId': doc.id, 'user': userData};
+            posts.add(PostsModels.fromJson(postData));
           }
 
-          posts;
+          return posts;
         });
   }
 }

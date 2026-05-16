@@ -6,7 +6,7 @@ sealed class DashboardState {}
 final class DashboardInitial extends DashboardState {}
 
 class DashboardPostsSuccessState extends DashboardState {
-  final List<PostsEntity>? posts;
+  final List<PostsEntity> posts;
 
   DashboardPostsSuccessState({required this.posts});
 }

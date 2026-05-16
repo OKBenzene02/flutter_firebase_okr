@@ -7,7 +7,7 @@ class DashboardUsecase {
   DashboardUsecase({required DashboardRepository dashboardRepository})
     : _dashboardRepository = dashboardRepository;
 
-  Stream<List<PostsEntity>?> getPosts() {
+  Stream<List<PostsEntity>> getPosts() {
     return _dashboardRepository.getDashboardContent();
   }
 }

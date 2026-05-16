@@ -1,6 +1,7 @@
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
 
 class PostsEntity {
+  final String? userId;
   final String? postId;
   final UserEntity? user;
   final List<String>? postImages;
@@ -19,5 +20,6 @@ class PostsEntity {
     this.commentsCount,
     this.isLiked,
     this.createdAt,
+    this.userId,
   });
 }

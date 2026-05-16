@@ -10,8 +10,8 @@ class DashboardRepositoryImpl extends DashboardRepository {
     : _dashboardServices = dashboardServices;
 
   @override
-  Stream<List<PostsEntity>?> getDashboardContent() {
+  Stream<List<PostsEntity>> getDashboardContent() {
     final stream = _dashboardServices.getPosts();
-    return stream.map((model) => model?.map((post) => post.toEntity()).toList());
+    return stream.map((model) => model.map((post) => post.toEntity()).toList());
   }
 }

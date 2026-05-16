@@ -23,22 +23,18 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     LoadDashboardPostsEvent event,
     Emitter<DashboardState> emit,
   ) async {
-    CustomLoaders.showLoading();
     try {
-      await emit.forEach<List<PostsEntity>?>(
+      await emit.forEach<List<PostsEntity>>(
         _dashboardUsecase.getPosts(),
         onData: (posts) {
-          CustomLoaders.hideLoading();
-          return DashboardPostsSuccessState(posts: posts ?? []);
+          return DashboardPostsSuccessState(posts: posts);
         },
         onError: (e, _) {
-          CustomLoaders.hideLoading();
           return DashboardErrorState(error: e.toString());
         },
       );
     } catch (e) {
       emit(DashboardErrorState(error: e.toString()));
-      CustomLoaders.hideLoading();
     }
   }
 }

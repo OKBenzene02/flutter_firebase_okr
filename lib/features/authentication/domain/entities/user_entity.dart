@@ -150,12 +150,16 @@ class UserEntity {
       isOnline: json['isOnline'] ?? false,
 
       lastSeen: json['lastSeen'] != null
-          ? (json['lastSeen'] as Timestamp).toDate()
+          ? json['lastSeen'] is Timestamp
+                ? (json['lastSeen'] as Timestamp).toDate()
+                : DateTime.parse(json['lastSeen'] as String)
           : null,
 
       createdAt: json['createdAt'] != null
-        ? DateTime.parse(json['createdAt'])
-        : null,
+          ? json['createdAt'] is Timestamp
+                ? (json['createdAt'] as Timestamp).toDate()
+                : DateTime.parse(json['createdAt'] as String)
+          : null,
     );
   }
 }

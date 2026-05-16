@@ -60,6 +60,7 @@ extension UserEntityMapper on UserEntity {
 extension PostsModelMapper on PostsModels {
   PostsEntity toEntity() {
     return PostsEntity(
+      userId: userId,
       user: user,
       caption: caption,
       commentsCount: commentsCount,

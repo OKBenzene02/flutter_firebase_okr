@@ -12,15 +12,19 @@ class PostsModels extends PostsEntity {
     super.likesCount,
     super.postId,
     super.postImages,
+    super.userId,
   });
 
   factory PostsModels.fromJson(Map<String, dynamic>? map) {
     return PostsModels(
+      userId: map?['userId'],
       user: map?['user'] != null ? UserEntity.fromJson(map?['user']) : null,
       caption: map?['caption'],
       commentsCount: map?['commentsCount'] ?? 0,
       createdAt: map?['createdAt'] != null
-          ? (map?['createdAt'] as Timestamp).toDate()
+          ? map!['createdAt'] is Timestamp
+                ? (map['createdAt'] as Timestamp).toDate()
+                : DateTime.parse(map['createdAt'] as String)
           : null,
       isLiked: map?['isLiked'] ?? false,
       likesCount: map?['likesCount'] ?? 0,
@@ -33,6 +37,7 @@ class PostsModels extends PostsEntity {
 
   Map<String, dynamic> toJson() {
     return {
+      'userId': userId,
       'user': user?.toJson(),
       'caption': caption,
       'commentsCount': commentsCount,

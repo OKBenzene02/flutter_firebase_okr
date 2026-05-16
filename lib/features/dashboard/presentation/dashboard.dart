@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_posts/core/utils/app_images.dart';
 import 'package:instagram_posts/core/utils/custom_banner.dart';
+import 'package:instagram_posts/core/utils/custom_loaders.dart';
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
-import 'package:instagram_posts/features/dashboard/domain/entities/posts_entity.dart';
 import 'package:instagram_posts/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 
 class Dashboard extends StatefulWidget {
@@ -15,8 +15,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<PostsEntity>? _posts;
-
   @override
   void initState() {
     super.initState();
@@ -51,24 +49,30 @@ class _DashboardState extends State<Dashboard> {
       ),
       body: BlocListener<DashboardBloc, DashboardState>(
         listener: (context, state) {
-          if (state is DashboardPostsSuccessState) {
-            setState(() => _posts = state.posts);
-          } else if (state is DashboardErrorState) {
+          if (state is DashboardErrorState) {
             CustomBanner.show(context, message: state.error);
           }
         },
         child: BlocBuilder<DashboardBloc, DashboardState>(
           builder: (context, state) {
-            return ListView.builder(
-              itemCount: _posts?.length,
-              itemBuilder: (context, index) {
-                final post = _posts?[index];
-                return ListTile(
-                  title: Text(post?.caption ?? 'No caption'),
-                  subtitle: Text('By ${post?.user?.name ?? 'Unknown'}'),
-                );
-              },
-            );
+            if (state is DashboardInitial) {
+              CustomLoaders.showLoading();
+              return const SizedBox.shrink();
+            } else if (state is DashboardPostsSuccessState) {
+              CustomLoaders.hideLoading();
+              return ListView.builder(
+                itemCount: state.posts.length,
+                itemBuilder: (context, index) {
+                  final post = state.posts[index];
+                  return ListTile(
+                    title: Text(post?.caption ?? 'No caption'),
+                    subtitle: Text('By ${post.user?.name ?? 'Unknown'}'),
+                  );
+                },
+              );
+            } else {
+              return SizedBox.shrink();
+            }
           },
         ),
       ),

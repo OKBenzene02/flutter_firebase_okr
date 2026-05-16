@@ -46,11 +46,15 @@ class UserModel extends UserEntity {
       isOnline: map?['isOnline'] ?? false,
 
       lastSeen: map?['lastSeen'] != null
-          ? (map?['lastSeen'] as Timestamp).toDate()
-          : null,
+        ? map!['lastSeen'] is Timestamp
+            ? (map['lastSeen'] as Timestamp).toDate()
+            : DateTime.parse(map['lastSeen'] as String)
+        : null,
 
       createdAt: map?['createdAt'] != null
-          ? (map?['createdAt'] as Timestamp).toDate()
+          ? map!['createdAt'] is Timestamp
+                ? (map['createdAt'] as Timestamp).toDate()
+                : DateTime.parse(map['createdAt'] as String)
           : null,
     );
   }
