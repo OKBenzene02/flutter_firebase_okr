@@ -11,7 +11,7 @@ import 'package:instagram_posts/core/utils/custom_loaders.dart';
 import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
 import 'package:instagram_posts/features/authentication/presentation/pages/auth_screen.dart';
-import 'package:instagram_posts/features/dashboard/presentation/dashboard.dart';
+import 'package:instagram_posts/features/dashboard/presentation/pages/dashboard.dart';
 
 void main() async {
   // Firebase configuration

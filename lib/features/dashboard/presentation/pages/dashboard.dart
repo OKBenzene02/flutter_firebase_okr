@@ -5,6 +5,7 @@ import 'package:instagram_posts/core/utils/custom_banner.dart';
 import 'package:instagram_posts/core/utils/custom_loaders.dart';
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
 import 'package:instagram_posts/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:instagram_posts/features/dashboard/presentation/widgets/post_card.dart';
 
 class Dashboard extends StatefulWidget {
   final UserEntity? user;
@@ -64,10 +65,7 @@ class _DashboardState extends State<Dashboard> {
                 itemCount: state.posts.length,
                 itemBuilder: (context, index) {
                   final post = state.posts[index];
-                  return ListTile(
-                    title: Text(post?.caption ?? 'No caption'),
-                    subtitle: Text('By ${post.user?.name ?? 'Unknown'}'),
-                  );
+                  return PostCard(post: post);
                 },
               );
             } else {
