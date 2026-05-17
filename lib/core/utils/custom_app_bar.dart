@@ -1,6 +1,8 @@
-// core/widgets/glassy_app_bar.dart
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:instagram_posts/core/utils/app_images.dart';
+import 'package:instagram_posts/core/utils/custom_image_widget.dart';
+import 'package:instagram_posts/core/utils/navigation_helper.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
@@ -8,7 +10,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final double blurStrength;
   final double opacity;
-  final bool showBorder;
+  final bool showBack;
 
   const CustomAppBar({
     super.key,
@@ -17,7 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.blurStrength = 10,
     this.opacity = 0.1,
-    this.showBorder = true,
+    this.showBack = false,
   });
 
   @override
@@ -41,9 +43,33 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
                 children: [
-                  if (leading != null) ...[leading!, const SizedBox(width: 8)],
-                  ?title,
+                  // ✅ show leading, or auto back button, or nothing
+                  if (leading != null) ...[
+                    leading!,
+                    const SizedBox(width: 8),
+                  ] else if (showBack && Navigator.canPop(context)) ...[
+                    GestureDetector(
+                      onTap: () => NavigationHelper.pop(),
+                      child: SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: Center(
+                          child: CustomImageWidget.svg(
+                            assetPath: AppImages.leftArrow(context),
+                            width: 20,
+                            height: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+
+                  // ✅ fixed — no ?title syntax
+                  if (title != null) title!,
+
                   const Spacer(),
+
                   if (actions != null) ...actions!,
                 ],
               ),

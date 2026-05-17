@@ -59,4 +59,52 @@ class AppImages {
         ? Assets.light.svg.overflowMenuIcon
         : Assets.dark.svg.overflowMenuIcon;
   }
+
+  static String camera(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.cameraIcon
+        : Assets.dark.svg.cameraIcon;
+  }
+
+  static String edit(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.editIcon
+        : Assets.dark.svg.editIcon;
+  }
+
+  static String lock(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.lockIcon
+        : Assets.dark.svg.lockIcon;
+  }
+
+  static String leftArrow(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.leftArrowIcon
+        : Assets.dark.svg.leftArrowIcon;
+  }
+
+  static String badge(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.badgeIcon
+        : Assets.dark.svg.badgeIcon;
+  }
+
+  static String email(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.emailIcon
+        : Assets.dark.svg.emailIcon;
+  }
+
+  static String eye(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.eyeIcon
+        : Assets.dark.svg.eyeIcon;
+  }
+
+  static String eyeCrossed(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.eyeCrossedIcon
+        : Assets.dark.svg.eyeCrossedIcon;
+  }
 }

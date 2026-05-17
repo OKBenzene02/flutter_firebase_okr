@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:instagram_posts/core/utils/app_images.dart';
 import 'package:instagram_posts/core/utils/custom_app_bar.dart';
 import 'package:instagram_posts/core/utils/custom_banner.dart';
+import 'package:instagram_posts/core/utils/custom_image_widget.dart';
 import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/domain/entities/user_entity.dart';
 import 'package:instagram_posts/features/authentication/domain/usecases/authentication_usecase.dart';
@@ -42,6 +44,7 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
     return Scaffold(
       appBar: CustomAppBar(
         title: Text('Instagramify', style: TextStyle(fontSize: 18)),
+        showBack: true,
       ),
       body: BlocConsumer<AuthBlocBloc, AuthBlocState>(
         listener: (context, state) {
@@ -162,10 +165,13 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
                         File(_userEntity?.profileImage ?? ''),
                         fit: BoxFit.cover,
                       )
-                    : Icon(
-                        Icons.camera_alt_outlined,
-                        color: cs.primary,
-                        size: 28,
+                    : Center(
+                        child: CustomImageWidget.svg(
+                          assetPath: AppImages.camera(context),
+                          width: 16,
+                          height: 16,
+                          color: ColorFilter.mode(cs.primary, .srcIn),
+                        ),
                       ),
               ),
             ),
@@ -175,15 +181,16 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
                 bottom: 4,
                 right: 4,
                 child: Container(
-                  padding: const EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: cs.primary,
                   ),
-                  child: Icon(
-                    Icons.edit_outlined,
-                    size: 12,
-                    color: cs.onPrimary,
+                  child: CustomImageWidget.svg(
+                    assetPath: AppImages.edit(context),
+                    width: 10,
+                    height: 10,
+                    color: ColorFilter.mode(cs.onPrimaryFixed, .srcIn),
                   ),
                 ),
               ),
@@ -213,11 +220,12 @@ class _AuthRegisterScreenState extends State<AuthRegisterScreen> {
             color: cs.onSurface.withOpacity(0.75),
           ),
         ),
-        const SizedBox(width: 4),
-        Icon(
-          Icons.lock_outline_rounded,
-          size: 14,
-          color: cs.onSurface.withOpacity(0.4),
+        const SizedBox(width: 6),
+        CustomImageWidget.svg(
+          assetPath: AppImages.lock(context),
+          width: 12,
+          height: 12,
+          color: ColorFilter.mode(cs.onSurface.withOpacity(0.75), .srcIn),
         ),
       ],
     );

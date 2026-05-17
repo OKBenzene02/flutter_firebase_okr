@@ -45,11 +45,17 @@ class $AssetsDarkImageGen {
 class $AssetsDarkSvgGen {
   const $AssetsDarkSvgGen();
 
+  /// File path: assets/dark/svg/badge_icon.svg
+  String get badgeIcon => 'assets/dark/svg/badge_icon.svg';
+
   /// File path: assets/dark/svg/bookmark_filled_icon.svg
   String get bookmarkFilledIcon => 'assets/dark/svg/bookmark_filled_icon.svg';
 
   /// File path: assets/dark/svg/bookmark_icon.svg
   String get bookmarkIcon => 'assets/dark/svg/bookmark_icon.svg';
+
+  /// File path: assets/dark/svg/camera_icon.svg
+  String get cameraIcon => 'assets/dark/svg/camera_icon.svg';
 
   /// File path: assets/dark/svg/comment_filled_icon.svg
   String get commentFilledIcon => 'assets/dark/svg/comment_filled_icon.svg';
@@ -57,11 +63,29 @@ class $AssetsDarkSvgGen {
   /// File path: assets/dark/svg/comment_icon.svg
   String get commentIcon => 'assets/dark/svg/comment_icon.svg';
 
+  /// File path: assets/dark/svg/edit_icon.svg
+  String get editIcon => 'assets/dark/svg/edit_icon.svg';
+
+  /// File path: assets/dark/svg/email_icon.svg
+  String get emailIcon => 'assets/dark/svg/email_icon.svg';
+
+  /// File path: assets/dark/svg/eye-crossed_icon.svg
+  String get eyeCrossedIcon => 'assets/dark/svg/eye-crossed_icon.svg';
+
+  /// File path: assets/dark/svg/eye_icon.svg
+  String get eyeIcon => 'assets/dark/svg/eye_icon.svg';
+
+  /// File path: assets/dark/svg/left_arrow_icon.svg
+  String get leftArrowIcon => 'assets/dark/svg/left_arrow_icon.svg';
+
   /// File path: assets/dark/svg/like_filled_icon.svg
   String get likeFilledIcon => 'assets/dark/svg/like_filled_icon.svg';
 
   /// File path: assets/dark/svg/like_icon.svg
   String get likeIcon => 'assets/dark/svg/like_icon.svg';
+
+  /// File path: assets/dark/svg/lock_icon.svg
+  String get lockIcon => 'assets/dark/svg/lock_icon.svg';
 
   /// File path: assets/dark/svg/overflow_menu_icon.svg
   String get overflowMenuIcon => 'assets/dark/svg/overflow_menu_icon.svg';
@@ -77,12 +101,20 @@ class $AssetsDarkSvgGen {
 
   /// List of all assets
   List<String> get values => [
+    badgeIcon,
     bookmarkFilledIcon,
     bookmarkIcon,
+    cameraIcon,
     commentFilledIcon,
     commentIcon,
+    editIcon,
+    emailIcon,
+    eyeCrossedIcon,
+    eyeIcon,
+    leftArrowIcon,
     likeFilledIcon,
     likeIcon,
+    lockIcon,
     overflowMenuIcon,
     placeholderIcon,
     sendFilledIcon,
@@ -104,11 +136,17 @@ class $AssetsLightImageGen {
 class $AssetsLightSvgGen {
   const $AssetsLightSvgGen();
 
+  /// File path: assets/light/svg/badge_icon.svg
+  String get badgeIcon => 'assets/light/svg/badge_icon.svg';
+
   /// File path: assets/light/svg/bookmark_filled_icon.svg
   String get bookmarkFilledIcon => 'assets/light/svg/bookmark_filled_icon.svg';
 
   /// File path: assets/light/svg/bookmark_icon.svg
   String get bookmarkIcon => 'assets/light/svg/bookmark_icon.svg';
+
+  /// File path: assets/light/svg/camera_icon.svg
+  String get cameraIcon => 'assets/light/svg/camera_icon.svg';
 
   /// File path: assets/light/svg/comment_filled_icon.svg
   String get commentFilledIcon => 'assets/light/svg/comment_filled_icon.svg';
@@ -116,11 +154,29 @@ class $AssetsLightSvgGen {
   /// File path: assets/light/svg/comment_icon.svg
   String get commentIcon => 'assets/light/svg/comment_icon.svg';
 
+  /// File path: assets/light/svg/edit_icon.svg
+  String get editIcon => 'assets/light/svg/edit_icon.svg';
+
+  /// File path: assets/light/svg/email_icon.svg
+  String get emailIcon => 'assets/light/svg/email_icon.svg';
+
+  /// File path: assets/light/svg/eye-crossed_icon.svg
+  String get eyeCrossedIcon => 'assets/light/svg/eye-crossed_icon.svg';
+
+  /// File path: assets/light/svg/eye_icon.svg
+  String get eyeIcon => 'assets/light/svg/eye_icon.svg';
+
+  /// File path: assets/light/svg/left_arrow_icon.svg
+  String get leftArrowIcon => 'assets/light/svg/left_arrow_icon.svg';
+
   /// File path: assets/light/svg/like_filled_icon.svg
   String get likeFilledIcon => 'assets/light/svg/like_filled_icon.svg';
 
   /// File path: assets/light/svg/like_icon.svg
   String get likeIcon => 'assets/light/svg/like_icon.svg';
+
+  /// File path: assets/light/svg/lock_icon.svg
+  String get lockIcon => 'assets/light/svg/lock_icon.svg';
 
   /// File path: assets/light/svg/overflow_menu_icon.svg
   String get overflowMenuIcon => 'assets/light/svg/overflow_menu_icon.svg';
@@ -136,12 +192,20 @@ class $AssetsLightSvgGen {
 
   /// List of all assets
   List<String> get values => [
+    badgeIcon,
     bookmarkFilledIcon,
     bookmarkIcon,
+    cameraIcon,
     commentFilledIcon,
     commentIcon,
+    editIcon,
+    emailIcon,
+    eyeCrossedIcon,
+    eyeIcon,
+    leftArrowIcon,
     likeFilledIcon,
     likeIcon,
+    lockIcon,
     overflowMenuIcon,
     placeholderIcon,
     sendFilledIcon,

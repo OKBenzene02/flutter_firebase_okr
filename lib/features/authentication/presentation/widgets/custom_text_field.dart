@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:instagram_posts/core/utils/app_images.dart';
+import 'package:instagram_posts/core/utils/custom_image_widget.dart';
+import 'package:instagram_posts/core/utils/navigation_helper.dart';
 
 // ─── Enum ────────────────────────────────────────────────────────────────────
 
@@ -18,6 +21,7 @@ enum AppTextFieldType {
 // ─── Extension ───────────────────────────────────────────────────────────────
 
 extension AppTextFieldTypeX on AppTextFieldType {
+  BuildContext? get context => NavigationHelper.navigatorKey.currentContext;
   String get label => switch (this) {
     AppTextFieldType.email => 'Email',
     AppTextFieldType.password => 'Password',
@@ -42,16 +46,16 @@ extension AppTextFieldTypeX on AppTextFieldType {
     AppTextFieldType.confirmPassword => 'Confirm Password',
   };
 
-  IconData get prefixIcon => switch (this) {
-    AppTextFieldType.email => Icons.mail_outline_rounded,
-    AppTextFieldType.password => Icons.lock_outline_rounded,
-    AppTextFieldType.username => Icons.alternate_email_rounded,
-    AppTextFieldType.displayName => Icons.badge_outlined,
-    AppTextFieldType.bio => Icons.edit_note_rounded,
-    AppTextFieldType.phone => Icons.phone_outlined,
-    AppTextFieldType.search => Icons.search_rounded,
-    AppTextFieldType.general => Icons.text_fields_rounded,
-    AppTextFieldType.confirmPassword => Icons.lock_outline_rounded,
+  String get prefixIcon => switch (this) {
+    AppTextFieldType.email => AppImages.email(context!),
+    AppTextFieldType.password => AppImages.lock(context!),
+    AppTextFieldType.username => AppImages.email(context!),
+    AppTextFieldType.displayName => AppImages.badge(context!),
+    AppTextFieldType.bio => AppImages.badge(context!),
+    AppTextFieldType.phone => AppImages.badge(context!),
+    AppTextFieldType.search => AppImages.badge(context!),
+    AppTextFieldType.general => AppImages.badge(context!),
+    AppTextFieldType.confirmPassword => AppImages.lock(context!),
   };
 
   bool get obscureText =>
@@ -241,11 +245,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           fontSize: 13,
           fontWeight: FontWeight.w500,
         ),
-        prefixIcon: Icon(
-          widget.type.prefixIcon,
-          size: 18,
-          color: cs.onSurface.withOpacity(0.45),
-        ),
+        prefixIcon: _buildPrefixIcon(widget.type.prefixIcon, cs),
         suffixIcon: _buildSuffixIcon(cs),
         counterText: _showCounter ? '$_charCount / 150' : null,
         counterStyle: TextStyle(
@@ -276,14 +276,37 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   Widget? _buildSuffixIcon(ColorScheme cs) {
     if (!_isPassword) return null;
-    return IconButton(
-      icon: Icon(
-        _obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-        size: 18,
-        color: cs.onSurface.withOpacity(0.45),
+    return GestureDetector(
+      onTap: () => setState(() => _obscure = !_obscure),
+      child: SizedBox(
+        width: 16,
+        height: 16,
+        child: Center(
+          child: CustomImageWidget.svg(
+            assetPath: _obscure
+                ? AppImages.eyeCrossed(context)
+                : AppImages.eye(context),
+            width: 16,
+            height: 16,
+            color: ColorFilter.mode(cs.onSurface.withOpacity(0.45), .srcIn),
+          ),
+        ),
       ),
-      onPressed: () => setState(() => _obscure = !_obscure),
-      splashRadius: 18,
+    );
+  }
+
+  Widget _buildPrefixIcon(String icon, ColorScheme cs) {
+    return SizedBox(
+      width: 16,
+      height: 16,
+      child: Center(
+        child: CustomImageWidget.svg(
+          assetPath: icon,
+          width: 16,
+          height: 16,
+          color: ColorFilter.mode(cs.onSurface.withOpacity(0.45), .srcIn),
+        ),
+      ),
     );
   }
 
