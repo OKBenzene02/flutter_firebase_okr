@@ -17,6 +17,10 @@ Progress made so-far
 - Implemented Dashboard and fetch latest posts feature from firebase using `streams`.
 - Added card design for posts
 - Implemented Glass-UI like design
+- Added Bottom Navigation Bar - This is the entry for any application after authentication
+
+This is to be done
+- **TODO:** Profile image upload and download - Currently api gives the local path of the image which is no-where to be found on the device, hence applications follow upload instruction to get the image_url and then download that image and cache it locally.
 
 **Firebase setup**
 - Download firebase in windows or mac - [Firebase | Android | Setup](https://firebase.google.com/docs/flutter/setup?platform=android)
@@ -34,3 +38,5 @@ Progress made so-far
 | <video width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/f83477cd-4604-4834-b892-425df8cf8517" /> | <video width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/c7cdecba-a02a-4f3e-b977-3c39aeda92a3" /> |
 | Dashboard Light | Dashboard Dark |
 | <video width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/1f6c9102-22f7-4585-a052-6f0f94249331" /> | <video width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/445b7313-e289-46a8-a1b7-8fa8aa57e925" /> |
+| Bottom Nav Light | Bottom Nav Dark |
+| <img width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/8c31449c-9df1-4eff-bd46-0f57955723c4" /> | <img width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/30473428-b4c2-4236-b8a4-966e532e0f8b" /> |
