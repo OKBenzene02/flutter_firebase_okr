@@ -45,6 +45,12 @@ class $AssetsDarkImageGen {
 class $AssetsDarkSvgGen {
   const $AssetsDarkSvgGen();
 
+  /// File path: assets/dark/svg/add_filled_icon.svg
+  String get addFilledIcon => 'assets/dark/svg/add_filled_icon.svg';
+
+  /// File path: assets/dark/svg/add_icon.svg
+  String get addIcon => 'assets/dark/svg/add_icon.svg';
+
   /// File path: assets/dark/svg/badge_icon.svg
   String get badgeIcon => 'assets/dark/svg/badge_icon.svg';
 
@@ -75,6 +81,12 @@ class $AssetsDarkSvgGen {
   /// File path: assets/dark/svg/eye_icon.svg
   String get eyeIcon => 'assets/dark/svg/eye_icon.svg';
 
+  /// File path: assets/dark/svg/home_filled_icon.svg
+  String get homeFilledIcon => 'assets/dark/svg/home_filled_icon.svg';
+
+  /// File path: assets/dark/svg/home_icon.svg
+  String get homeIcon => 'assets/dark/svg/home_icon.svg';
+
   /// File path: assets/dark/svg/left_arrow_icon.svg
   String get leftArrowIcon => 'assets/dark/svg/left_arrow_icon.svg';
 
@@ -93,6 +105,12 @@ class $AssetsDarkSvgGen {
   /// File path: assets/dark/svg/placeholder_icon.svg
   String get placeholderIcon => 'assets/dark/svg/placeholder_icon.svg';
 
+  /// File path: assets/dark/svg/search_filled_icon.svg
+  String get searchFilledIcon => 'assets/dark/svg/search_filled_icon.svg';
+
+  /// File path: assets/dark/svg/search_icon.svg
+  String get searchIcon => 'assets/dark/svg/search_icon.svg';
+
   /// File path: assets/dark/svg/send_filled_icon.svg
   String get sendFilledIcon => 'assets/dark/svg/send_filled_icon.svg';
 
@@ -101,6 +119,8 @@ class $AssetsDarkSvgGen {
 
   /// List of all assets
   List<String> get values => [
+    addFilledIcon,
+    addIcon,
     badgeIcon,
     bookmarkFilledIcon,
     bookmarkIcon,
@@ -111,12 +131,16 @@ class $AssetsDarkSvgGen {
     emailIcon,
     eyeCrossedIcon,
     eyeIcon,
+    homeFilledIcon,
+    homeIcon,
     leftArrowIcon,
     likeFilledIcon,
     likeIcon,
     lockIcon,
     overflowMenuIcon,
     placeholderIcon,
+    searchFilledIcon,
+    searchIcon,
     sendFilledIcon,
     sendIcon,
   ];
@@ -135,6 +159,12 @@ class $AssetsLightImageGen {
 
 class $AssetsLightSvgGen {
   const $AssetsLightSvgGen();
+
+  /// File path: assets/light/svg/add_filled_icon.svg
+  String get addFilledIcon => 'assets/light/svg/add_filled_icon.svg';
+
+  /// File path: assets/light/svg/add_icon.svg
+  String get addIcon => 'assets/light/svg/add_icon.svg';
 
   /// File path: assets/light/svg/badge_icon.svg
   String get badgeIcon => 'assets/light/svg/badge_icon.svg';
@@ -166,6 +196,12 @@ class $AssetsLightSvgGen {
   /// File path: assets/light/svg/eye_icon.svg
   String get eyeIcon => 'assets/light/svg/eye_icon.svg';
 
+  /// File path: assets/light/svg/home_filled_icon.svg
+  String get homeFilledIcon => 'assets/light/svg/home_filled_icon.svg';
+
+  /// File path: assets/light/svg/home_icon.svg
+  String get homeIcon => 'assets/light/svg/home_icon.svg';
+
   /// File path: assets/light/svg/left_arrow_icon.svg
   String get leftArrowIcon => 'assets/light/svg/left_arrow_icon.svg';
 
@@ -184,6 +220,12 @@ class $AssetsLightSvgGen {
   /// File path: assets/light/svg/placeholder_icon.svg
   String get placeholderIcon => 'assets/light/svg/placeholder_icon.svg';
 
+  /// File path: assets/light/svg/search_filled_icon.svg
+  String get searchFilledIcon => 'assets/light/svg/search_filled_icon.svg';
+
+  /// File path: assets/light/svg/search_icon.svg
+  String get searchIcon => 'assets/light/svg/search_icon.svg';
+
   /// File path: assets/light/svg/send_filled_icon.svg
   String get sendFilledIcon => 'assets/light/svg/send_filled_icon.svg';
 
@@ -192,6 +234,8 @@ class $AssetsLightSvgGen {
 
   /// List of all assets
   List<String> get values => [
+    addFilledIcon,
+    addIcon,
     badgeIcon,
     bookmarkFilledIcon,
     bookmarkIcon,
@@ -202,12 +246,16 @@ class $AssetsLightSvgGen {
     emailIcon,
     eyeCrossedIcon,
     eyeIcon,
+    homeFilledIcon,
+    homeIcon,
     leftArrowIcon,
     likeFilledIcon,
     likeIcon,
     lockIcon,
     overflowMenuIcon,
     placeholderIcon,
+    searchFilledIcon,
+    searchIcon,
     sendFilledIcon,
     sendIcon,
   ];

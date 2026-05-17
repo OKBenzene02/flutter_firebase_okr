@@ -34,7 +34,7 @@ class _DashboardState extends State<Dashboard> {
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
         leading: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
           child: AppImages.instagram(
             context,
           ).image(width: 24, fit: BoxFit.contain),

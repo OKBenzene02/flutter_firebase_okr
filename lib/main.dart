@@ -11,6 +11,7 @@ import 'package:instagram_posts/core/utils/custom_loaders.dart';
 import 'package:instagram_posts/core/utils/navigation_helper.dart';
 import 'package:instagram_posts/features/authentication/presentation/bloc/auth_bloc_bloc.dart';
 import 'package:instagram_posts/features/authentication/presentation/pages/auth_screen.dart';
+import 'package:instagram_posts/features/bottom_tab_view/presentation/pages/bottom_tab_view.dart';
 import 'package:instagram_posts/features/dashboard/presentation/pages/dashboard.dart';
 
 void main() async {
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
     final isLoggedIn = SessionManager.isLoggedIn();
     if (isLoggedIn) {
       final user = SessionManager.getUser();
-      return Dashboard(user: user);
+      return BottomTabView(user: user);
     } else {
       return AuthLoginScreen();
     }

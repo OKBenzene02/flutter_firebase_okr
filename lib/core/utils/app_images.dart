@@ -107,4 +107,40 @@ class AppImages {
         ? Assets.light.svg.eyeCrossedIcon
         : Assets.dark.svg.eyeCrossedIcon;
   }
+
+  static String home(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.homeIcon
+        : Assets.dark.svg.homeIcon;
+  }
+
+  static String homeFilled(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.homeFilledIcon
+        : Assets.dark.svg.homeFilledIcon;
+  }
+
+  static String search(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.searchIcon
+        : Assets.dark.svg.searchIcon;
+  }
+
+  static String searchFilled(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.searchFilledIcon
+        : Assets.dark.svg.searchFilledIcon;
+  }
+
+  static String add(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.addIcon
+        : Assets.dark.svg.addIcon;
+  }
+
+  static String addFilled(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.light
+        ? Assets.light.svg.addFilledIcon
+        : Assets.dark.svg.addFilledIcon;
+  }
 }

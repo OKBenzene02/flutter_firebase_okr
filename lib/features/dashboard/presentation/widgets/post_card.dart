@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:instagram_posts/core/utils/app_images.dart';
 import 'package:instagram_posts/core/utils/custom_image_widget.dart';
@@ -94,34 +96,72 @@ class _PostCardState extends State<PostCard> {
       onTap: () {
         showModalBottomSheet(
           context: context,
+          backgroundColor: Colors.transparent,
+          barrierColor: Colors.black.withValues(alpha: 0.3),
           builder: (_) => _postOptionsSheet(),
         );
       },
-      child: const Icon(Icons.more_vert),
+      child: Center(
+        child: SizedBox(
+          width: 18,
+          height: 18,
+          child: CustomImageWidget.svg(
+            assetPath: AppImages.overflowMenu(context),
+            width: 18,
+            height: 18,
+          ),
+        ),
+      ),
     );
   }
 
   Widget _postOptionsSheet() {
-    return SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListTile(
-            leading: const Icon(Icons.bookmark_border),
-            title: const Text('Save'),
-            onTap: () => Navigator.pop(context),
+    return ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.6),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
           ),
-          ListTile(
-            leading: const Icon(Icons.share_outlined),
-            title: const Text('Share'),
-            onTap: () => Navigator.pop(context),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.4),
+                    ),
+                    width: 50,
+                    height: 6,
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.bookmark_border),
+                    title: const Text('Save'),
+                    onTap: () => Navigator.pop(context),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.share_outlined),
+                    title: const Text('Share'),
+                    onTap: () => Navigator.pop(context),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.flag_outlined),
+                    title: const Text('Report'),
+                    onTap: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
+            ),
           ),
-          ListTile(
-            leading: const Icon(Icons.flag_outlined),
-            title: const Text('Report'),
-            onTap: () => Navigator.pop(context),
-          ),
-        ],
+        ),
       ),
     );
   }
