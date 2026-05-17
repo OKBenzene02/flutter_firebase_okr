@@ -26,10 +26,11 @@ Progress made so-far
 - For firebase auth - add email/password sign-in option
 - For firestore - create a test collection and add a document-id
 
-
 | Light | Dark |
 | ----- | ----- |
-| <img width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/8c1361a1-2e5d-452b-8759-3a87825f927e" /> | <img width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/9e4fcb69-dfbb-48a3-a0dc-44f43a276704" /> |
-| <img width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/268c3189-f5d1-4b7e-a6c1-2e66e3cb2952" /> | <img width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/6d797264-3c7b-4849-a207-1a1b59c2a1b7" /> |
+| <img width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/69d51332-1459-419e-92d8-f6f86779272a" /> | <img width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/f3c91a2f-8a88-4c35-9b47-4bf2d1437b42" /> |
+| <img width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/8bcfc655-f273-45ab-b4ed-f1ed5b579538" /> | <img width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/d20f7196-87a2-41e4-94f5-d9529e0e93e2" /> |
+| Login Process |
+| <video width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/f83477cd-4604-4834-b892-425df8cf8517" /> | <video width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/c7cdecba-a02a-4f3e-b977-3c39aeda92a3" /> |
 | Dashboard Light | Dashboard Dark |
 | <video width="320" alt="Screenshot_1778004616" src="https://github.com/user-attachments/assets/1f6c9102-22f7-4585-a052-6f0f94249331" /> | <video width="320" alt="Screenshot_1778004613" src="https://github.com/user-attachments/assets/445b7313-e289-46a8-a1b7-8fa8aa57e925" /> |
